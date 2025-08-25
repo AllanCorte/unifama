@@ -1,7 +1,8 @@
-#Classificação Etária
-#Crie um programa que verifica se uma pessoa pode assistir a um filme classificado como "maiores de 16 anos".
-#Dados:
-#Idade da pessoa: Pergunte ao usuário
+# Classificação Etária
+# Crie um programa que verifica se uma pessoa pode assistir a um filme
+# classificado como "maiores de 16 anos".
+# Dados:
+# Idade da pessoa: Pergunte ao usuário
 
 idade = int(input('qual é sua idade: '))
 
