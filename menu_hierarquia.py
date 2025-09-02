@@ -90,4 +90,4 @@ while True:
         print('saindo...')
         break
     else:
-        print('opção invalinda! escolha de 1 a 6.')
+        print('opção invalida! escolha de 1 a 6.')
