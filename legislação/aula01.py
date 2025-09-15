@@ -1,3 +1,9 @@
+# 1 - Consulta Simples
+# Crie um algoritmo que pergunte ao usuário o tipo de norma (ex: Constituição,
+#  Lei, Decreto, Resolução, Norma técnica).
+# Mostre em qual nível hierárquico ela está.
+# O programa encerra quando o usuário digitar “sair”.
+
 
 while True:
     norma = int(input('digite o numero da tipo de norma\n'

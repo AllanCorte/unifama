@@ -27,5 +27,3 @@ while True:
             print('tema nao encontrado')
         else:
             print(resultado)
-
-

@@ -1,0 +1,28 @@
+# 5 - Contador de Consulta
+# Faça um algoritmo que permita consultar normas até digitar “sair”.
+# Cada vez que o usuário digitar uma norma válida, aumente um contador geral.
+# Ao encerrar, mostre: Você consultou X normas. (X representa a QUANTIDADE
+#  de consultas feitas)
+
+base = ['Constituição', 'lei', 'decreto', 'resolução', 'norma tecnica']
+consultas = 0
+consultas_certas = 0
+
+while True:
+    entrada = str(input('escreva um normar que deseja ou sair: ')).lower()
+
+    if entrada == 'sair':
+        print(f'você fez {consultas} consultas e, {consultas_certas} cetas')
+        break
+
+    elif entrada in base:
+        print('norma valida')
+        consultas += 1
+        consultas_certas += 1
+
+    elif entrada not in base:
+        print('norma incorreta')
+        consultas += 1
+
+    else:
+        print('erro tente novamente')
