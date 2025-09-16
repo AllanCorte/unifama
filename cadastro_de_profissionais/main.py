@@ -17,7 +17,7 @@
 profissionais = []  # type: ignore
 while True:
     email_existente = False
-    email = str(input('digite seu email ou ["sair"]: '))
+    email = str(input('digite seu email ou ["sair"]: ')).strip().lower()
     if email == 'sair':
         break
 
@@ -29,18 +29,20 @@ while True:
         print('email ja cadastrado!, por favor coloque outro')
         continue
 
-    nome = str(input('digite seu nome: '))
+    nome = str(input('digite seu nome: ')).strip()
 
     hard_lista = []  # habilidades tecnicas
     while True:
-        hard_skills = (input('Escreva sua Hard Skill, ou [sair]: '))
+        hard_skills = (input('Escreva sua Hard Skill,'
+                             ' ou [sair]: ')).strip().lower()
         if hard_skills == 'sair':
             break
         hard_lista.append(hard_skills)
 
     soft_lista = []  # habilidades comportamentais
     while True:
-        soft_skills = (input('Escreva sua soft Skill, ou ["sair"]: '))
+        soft_skills = (input('Escreva sua soft Skill,'
+                             ' ou ["sair"]: ')).strip().lower()
         if soft_skills == 'sair':
             break
         soft_lista.append(soft_skills)

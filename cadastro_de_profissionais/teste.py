@@ -5,6 +5,10 @@ while True:
     if email == 'sair':
         break
 
+    elif '@gmail.com' not in email:
+        print('o email deve conter @gmail.com')
+        continue
+
     for p in (profissionais):
         if p.get('Email') == email:
             print('email ja cadastrado!, por favor coloque outro')
