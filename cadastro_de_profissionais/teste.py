@@ -1,4 +1,4 @@
-profissionais = []
+profissionais = []  # type: ignore
 email_existente = False
 while True:
     email = str(input('digite seu email ou ["sair"]: '))

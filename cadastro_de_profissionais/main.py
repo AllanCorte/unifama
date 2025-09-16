@@ -14,19 +14,19 @@
 # (com chaves: nome, email, hard skills, soft skills) e depois adicionado
 # a uma lista de profissionais.
 
-profissionais = []
-email_existente = False
+profissionais = []  # type: ignore
 while True:
+    email_existente = False
     email = str(input('digite seu email ou ["sair"]: '))
     if email == 'sair':
         break
 
     for p in (profissionais):
         if p.get('Email') == email:
-            print('email ja cadastrado!, por favor coloque outro')
             email_existente = True
 
     if email_existente:
+        print('email ja cadastrado!, por favor coloque outro')
         continue
 
     nome = str(input('digite seu nome: '))
