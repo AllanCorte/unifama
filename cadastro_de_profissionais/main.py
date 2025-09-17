@@ -13,6 +13,10 @@
 # Cada profissional deve ser armazenado em um dicionário
 # (com chaves: nome, email, hard skills, soft skills) e depois adicionado
 # a uma lista de profissionais.
+def exibir_profissional(**kwargs):
+    for chave, valor in kwargs.items():
+        print(f'{chave}: {valor}')
+
 
 profissionais = []  # type: ignore
 while True:
@@ -54,5 +58,5 @@ while True:
                     }
 
     profissionais.append(profissional)
-
-print(profissionais)
+for pessoa in profissionais:
+    exibir_profissional(**pessoa)
