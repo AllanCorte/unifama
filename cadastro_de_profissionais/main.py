@@ -1,7 +1,6 @@
 profissionais = []
-# lista para armazenar todos os profissionais
 
-# Cadastro de profissionais
+
 while True:
     email = input('Digite seu email ou ["sair"]: ').strip().lower()
     if email == 'sair':
