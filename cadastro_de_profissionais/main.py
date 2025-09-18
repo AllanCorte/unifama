@@ -1,62 +1,115 @@
-# Crie um programa em Python que cadastre profissionais com email único, nome,
-#  hard skills e soft skills. Cada profissional é armazenado em um dicionário
-#  e adicionado a uma lista.
-# Pergunte o email (o email deve ser único para cada profissional) e o nome.
-# Inicie a repetição para cadastrar as hard skills do profissional, até que
-# o usuário digite "sair".
-# Após encerrar o cadastro das hard skills, inicie a repetição para cadastrar
-# as soft skills, até que o usuário digite "sair".
-# Ao finalizar o cadastro de um profissional, reinicie o processo para um
-# novo profissional.
-# O processo de cadastro de profissionais deve continuar até que o usuário
-#  digite "sair" no campo de email.
-# Cada profissional deve ser armazenado em um dicionário
-# (com chaves: nome, email, hard skills, soft skills) e depois adicionado
-# a uma lista de profissionais.
-def exibir_profissional(**kwargs):
-    for chave, valor in kwargs.items():
-        print(f'{chave}: {valor}')
+profissionais = []
+# lista para armazenar todos os profissionais
 
-
-profissionais = []  # type: ignore
+# Cadastro de profissionais
 while True:
-    email_existente = False
-    email = str(input('digite seu email ou ["sair"]: ')).strip().lower()
+    email = input('Digite seu email ou ["sair"]: ').strip().lower()
     if email == 'sair':
         break
 
-    for p in (profissionais):
-        if p.get('Email') == email:
-            email_existente = True
-
-    if email_existente:
-        print('email ja cadastrado!, por favor coloque outro')
+    elif '@gmail.com' not in email:
+        print('o email deve conter @gmail.com')
         continue
 
-    nome = str(input('digite seu nome: ')).strip()
-
-    hard_lista = []  # habilidades tecnicas
-    while True:
-        hard_skills = (input('Escreva sua Hard Skill,'
-                             ' ou [sair]: ')).strip().lower()
-        if hard_skills == 'sair':
+    email_existente = False
+    for p in profissionais:
+        if p.get('Email') == email:
+            email_existente = True
             break
-        hard_lista.append(hard_skills)
 
-    soft_lista = []  # habilidades comportamentais
+    if email_existente:
+        print('Email já cadastrado! Por favor, coloque outro.')
+        continue
+
+    nome = input('Digite seu nome: ').strip()
+
+    hard_lista = []
     while True:
-        soft_skills = (input('Escreva sua soft Skill,'
-                             ' ou ["sair"]: ')).strip().lower()
-        if soft_skills == 'sair':
+        hard_skill = input(
+            'Escreva sua Hard Skill, ou [sair]: ').strip().lower()
+        if hard_skill == 'sair':
             break
-        soft_lista.append(soft_skills)
+        else:
+            hard_lista.append(hard_skill)
 
-    profissional = {'Nome': nome,
-                    'Email': email,
-                    'Hard-Skill': hard_lista,
-                    'Soft-Skill': soft_lista
-                    }
+    soft_lista = []
+    while True:
+        soft_skill = input(
+            'Escreva sua Soft Skill, ou [sair]: ').strip().lower()
+        if soft_skill == 'sair':
+            break
+        else:
+            soft_lista.append(soft_skill)
+
+    profissional = {
+        'Nome': nome,
+        'Email': email,
+        'Hard-Skill': hard_lista,
+        'Soft-Skill': soft_lista
+    }
 
     profissionais.append(profissional)
+
+
+titulo_vaga = input('Qual o título da vaga: ').strip()
+
+lista_hards_skills_exigidas = []
+while True:
+    hard_skill_exigida = input(
+        'Escreva a Hard Skill exigida, ou [sair]: ').strip().lower()
+    if hard_skill_exigida == 'sair':
+        break
+    else:
+        lista_hards_skills_exigidas.append(hard_skill_exigida)
+
+lista_softs_skills_exigidas = []
+while True:
+    soft_skill_exigida = input(
+        'Escreva a Soft Skill exigida, ou [sair]: ').strip().lower()
+    if soft_skill_exigida == 'sair':
+        break
+    else:
+        lista_softs_skills_exigidas.append(soft_skill_exigida)
+
+vaga = {
+    'titulo': titulo_vaga,
+    'hards_skills': lista_hards_skills_exigidas,
+    'softs_skills': lista_softs_skills_exigidas
+}
+
+ranking = []
+
 for pessoa in profissionais:
-    exibir_profissional(**pessoa)
+    hard_match = []
+    for comp in pessoa['Hard-Skill']:
+        if comp in vaga['hards_skills']:
+            hard_match.append(comp)
+
+    soft_match = []
+    for comp in pessoa['Soft-Skill']:
+        if comp in vaga['softs_skills']:
+            soft_match.append(comp)
+
+    pontos = len(hard_match) * 2 + len(soft_match)
+
+    ranking.append({
+        'Nome': pessoa['Nome'],
+        'Email': pessoa['Email'],
+        'Pontuação': pontos,
+    })
+
+maior_pontuacao = 0
+top = None
+
+for r in ranking:
+    if r['Pontuação'] > maior_pontuacao:
+        maior_pontuacao = r['Pontuação']
+        top = r
+
+if maior_pontuacao > 0:
+    print(f'{vaga['titulo']}')
+    print(f'Nome: {top['Nome']}')
+    print(f'Email: {top['Email']}')
+else:
+    print('Nenhum profissional cadastrado ou ninguém atingiu '
+          'pontuação maior que zero.')
